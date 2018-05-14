@@ -8,15 +8,15 @@ import Sum from '../Topics/Sum';
 class TopicBrowser extends Component {
     render() {
         return (
-            <div> 
+            <div>
                 <EvenAndOdd />
                 <FilterObject />
                 <FilterString />
                 <Palindrome />
                 <Sum />
-            </div>
+            </div> 
         )
     }
 }
 
-export default TopicBrowser
+export default TopicBrowser 

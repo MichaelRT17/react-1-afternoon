@@ -3,27 +3,27 @@ import React, {Component} from 'react';
 class FilterString extends Component {
     constructor() {
         super();
-        
-        this.state = {
-            unFilterArray: ['Hello','My','Name','Is','Michael','Thurman'],
-            userInput: '',
-            filteredArry: []
+
+        this.state={
+            unFilteredArray:['my','name','is','michael','thurman','and','i','love','my','wife'],
+            userInput:'',
+            filteredArray:[]
         }
     }
 
-    whenTyping(input) {
+    whenInputting(input) {
         this.setState( {userInput:input} )
     }
 
-    whenClicked(input) {
-        let str = this.state.unFilterArray
-        let arr = []
-        for(var i = 0; i < str.length; i++) {
-            if(str[i].includes(input)) {
-                arr.push(str[i])
+    whenClicking(input) {
+        let result = []
+        let arr = this.state.unFilteredArray
+        for(var i = 0; i < arr.length; i++) {
+            if(arr[i].includes(input)) {
+                result.push(arr[i])
             }
         }
-        this.setState( {filteredArry:arr} )
+        this.setState( {filteredArray:result} )
     }
     
     render() {
@@ -31,16 +31,16 @@ class FilterString extends Component {
             <div className='puzzleBox filterStringPB'>
                 <h4>Filter String</h4>
                 <span className='puzzleText'
-                    >{JSON.stringify(this.state.unFilterArray)}
+                    >Strings : {JSON.stringify(this.state.unFilteredArray)}
                 </span>
                 <input className='inputLine'
-                    onChange={e => this.whenTyping(e.target.value)}
+                    onChange={e => this.whenInputting(e.target.value)}
                 />
                 <button className='confirmationButton'
-                    onClick={e => this.whenClicked(this.state.userInput)}> Filter  
+                    onClick={e => this.whenClicking(this.state.userInput)}>Filter
                 </button>
                 <span className='resultsBox filterStringRB'
-                    >Filtered: {JSON.stringify(this.state.filteredArry)}
+                    >Filtered: {JSON.stringify(this.state.filteredArray)}
                 </span>
             </div> 
         )

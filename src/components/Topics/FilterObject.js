@@ -3,63 +3,48 @@ import React, {Component} from 'react';
 class FilterObject extends Component {
     constructor() {
         super();
-        
-        this.state = {
-            unFilteredArray: [
-                {
-                    name:'Michael',
-                    age:23,
-                    favColor: 'blue'
-                },
-                {
-                    name:'Carissa',
-                    age:26,
-                    favColor: 'green',
-                    title: 'Mrs.'
-                },
-                {
-                    name:'Xavier',
-                }
+
+        this.state={
+            unFilteredArray:[
+                {name:'Apple',color:'red',healthy:'true'},
+                {name:'Pizza',color:'yellow',healthy:'false',favoriteTopping:'Pepperoni'},
+                {name:'Michael',age:23,favoriteColor:'blue'}
             ],
-            userInput: '',
-            filteredArray: []
-
+            userInput:'',
+            filteredArray:[]
         }
     }
 
-    typingIn(val) {
-        this.setState( {userInput:val} )
+    whenInputting(input) {
+        this.setState( {userInput:input} )
     }
 
-    clickChange(input) {
-        var people = this.state.unFilteredArray
-        var filteredPeople = []
-
-        for(var i = 0; i < people.length; i++) {
-            if(people[i].hasOwnProperty(input)) {
-                filteredPeople.push(people[i])
+    whenClicking(input) {
+        let result = []
+        let middle = this.state.unFilteredArray
+        for(var i = 0; i < middle.length; i++) {
+            if(middle[i].hasOwnProperty(input)) {
+                result.push(middle[i])
             }
-            console.log(filteredPeople)
         }
-        this.setState( {filteredArray:filteredPeople} )
+        this.setState( {filteredArray:result} )
     }
-
+    
     render() {
-        console.log(this.state.filteredArray)
         return (
             <div className='puzzleBox filterObjectPB'>
                 <h4>Filter Object</h4>
                 <span className='puzzleText'
-                    >Original: { JSON.stringify( this.state.unFilteredArray ) }
+                    >Original: {JSON.stringify(this.state.unFilteredArray)}
                 </span>
-                <input className='inputLine' 
-                    onChange={e => this.typingIn(e.target.value)}
+                <input className='inputLine'
+                    onChange={e => this.whenInputting(e.target.value)}
                 />
-                <button className='confirmationButton' 
-                    onClick={e => this.clickChange(this.state.userInput)}> Filter
+                <button className='confirmationButton'
+                    onClick={e => this.whenClicking(this.state.userInput)}> Filter
                 </button>
                 <span className='resultsBox filterObjectRB'
-                    >Filtered: { JSON.stringify( this.state.filteredArray) }
+                    >Filtered: {JSON.stringify(this.state.filteredArray)}
                 </span>
             </div> 
         )

@@ -4,26 +4,25 @@ class Sum extends Component {
     constructor() {
         super();
 
-        this.state = {
+        this.state={
             number1:0,
             number2:0,
             sum:null
         }
     }
 
-    alterNum1(num1) {
-        let realNum = parseInt(num1)
-        this.setState( {number1:realNum} )
+    whenInputting1(input) {
+        let num1 = parseInt(input)
+        this.setState( {number1:num1} )
     }
 
-    alterNum2(num2) {
-        let realNum = parseInt(num2)
-        this.setState( {number2:realNum} )
+    whenInputting2(input) {
+        let num2 = parseInt(input)
+        this.setState( {number2:num2} )
     }
 
-    setTheSum(num1, num2) {
-        let ans = num1 + num2
-        this.setState( {sum:ans} )
+    whenClicking(num1, num2) {
+        this.setState( {sum:num1 + num2} )
     }
     
     render() {
@@ -31,19 +30,19 @@ class Sum extends Component {
             <div className='puzzleBox sumPB'>
                 <h4>Sum</h4>
                 <input className='inputLine'
-                    onChange={e => this.alterNum1(e.target.value)}
+                    onChange={e => this.whenInputting1(e.target.value)}
                 />
                 <input className='inputLine'
-                    onChange={e => this.alterNum2(e.target.value)}
+                    onChange={e => this.whenInputting2(e.target.value)}
                 />
                 <button className='confirmationButton'
-                    onClick={e => this.setTheSum(this.state.number1,this.state.number2)}> Add
+                    onClick={e => this.whenClicking(this.state.number1,this.state.number2)}>Add 
                 </button>
-                <span className='resultsBox'
-                    > Sum: {this.state.sum}
+                <span className='resultsBox sumRB'
+                    >Sum: {this.state.sum}
                 </span>
             </div> 
-        )
+        ) 
     }
 }
 
